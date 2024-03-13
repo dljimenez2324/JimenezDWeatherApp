@@ -1,0 +1,33 @@
+/* Fonts */
+
+
+
+/* Global Style */
+body {
+    background-image: url("../media/image\ 1.png");
+}
+
+
+/* Styles */
+
+/* Style for search Bar container */
+.searchContainerOne {
+    /* float: right; */
+    text-align: right;
+
+}
+
+/* Style for search Bar One */
+.searchBarOne {
+
+}
+
+/* Style for search button */
+.searchMag {
+
+}
+
+/* Style for Magnifying glass image */
+.magnifique {
+    width: 45.44px;
+}
