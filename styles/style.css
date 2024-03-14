@@ -8,7 +8,10 @@ body {
 }
 
 
-/* Styles */
+/* Common Styles */
+.contCommon {
+    background-color: #B6EDFF;
+}
 
 /* Style for search Bar container */
 .searchContainerOne {
@@ -30,4 +33,9 @@ body {
 /* Style for Magnifying glass image */
 .magnifique {
     width: 45.44px;
+}
+
+/* Location Styling */
+.locoStyle {
+    color: white;
 }
