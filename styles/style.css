@@ -4,6 +4,7 @@
 
 /* Global Style */
 body {
+    overflow-x: hidden; /* Hide horizontal scrollbar */
     background-image: url("../media/image\ 1.png");
 }
 
@@ -36,6 +37,25 @@ body {
 }
 
 /* Location Styling */
-.locoStyle {
+.locaStyle {
     color: white;
+}
+
+/* Today Temp style 1st big box */
+.itemsNow {
+    display:flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.tempNow {
+
+}
+
+/* Icon Size Today Container */
+.heartSize {
+    width: 3rem;
+}
+.iconSizeToday {
+
 }
