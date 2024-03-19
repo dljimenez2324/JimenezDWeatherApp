@@ -4,14 +4,19 @@
 
 /* Global Style */
 body {
-    overflow-x: hidden; /* Hide horizontal scrollbar */
+    overflow: hidden; /* Hide horizontal scrollbar */
     background-image: url("../media/image\ 1.png");
+    background-repeat: no-repeat;
+    background-size:cover;
+    background-clip:unset;
 }
 
 
 /* Common Styles */
 .contCommon {
     background-color: #B6EDFF;
+    display:flex;
+    
 }
 
 /* Style for search Bar container */
@@ -48,14 +53,20 @@ body {
     flex-direction: column;
     align-items: center;
 }
-.tempNow {
+.tempNowStyle {
+    font-size: 100px;
+}
 
+.weatherWordsNowStyle {
+    font-size:larger;
 }
 
 /* Icon Size Today Container */
 .heartSize {
     width: 3rem;
 }
-.iconSizeToday {
+.weatherNowIconStyle {
 
 }
+
+/* Today Weather style 2nd big box */
