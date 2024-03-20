@@ -16,10 +16,15 @@ let humidityNow = document.getElementById("humidityNow");
 // establishing global variables
 let currentWeather = [];
 let defaultCity = "Stockton";
+let chosenCity = "Stockton";
+
 // My API Key
 const apiKey = "b5081063510cb1d1936ae3ec13a7744b";
-let currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${defaultCity}&units=imperial&appid=${apiKey}`;
 
+// 
+let currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${chosenCity}&units=imperial&appid=${apiKey}`;
+let weatherIconUrl = "https://openweathermap.org/img/wn/";
+let nowIcon = "./media/sun.png";
 
 // Function for getCurrentWeather function for API call
 async function getCurrentWeather(chosenCity){
@@ -30,11 +35,26 @@ async function getCurrentWeather(chosenCity){
     currentWeather = apiResponse;
 
     // display to 1st card current temp
-    let roundDown = Math.round(apiResponse.main.temp);
-    tempNow.innerText = roundDown + "°";
+    let roundTemp = Math.round(apiResponse.main.temp);
+    tempNow.innerText = roundTemp + "°";
     weatherWordsNow.innerText = apiResponse.weather[0].description;
+
+    // display icon on 1st card
+    let nowIcon = apiResponse.weather[0].icon;
+    weatherNowIcon.src = weatherIconUrl + nowIcon + "@2x.png";
 }
 
 // using our get weather Function
-getCurrentWeather(defaultCity);
+getCurrentWeather(chosenCity);
 
+// to get the location from our search input lets use the input and button to get the location
+searchBtn.addEventListener("click", function(){
+    chosenCity = searchBar.value;
+    getCurrentWeather(chosenCity);  // this should get the value of the input and place into the weather function
+
+    console.log(searchBar.value);
+})
+
+console.log(chosenCity);
+// !!!!!!!!!!!!!!!!!!!!!!!!!!  the above console log will not show mu updated chosenCity to what the searchinput is after clicking the search button
+//  ASK BRYAN !!!!!!!!

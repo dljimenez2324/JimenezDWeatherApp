@@ -1,0 +1,43 @@
+{
+    "coord": {
+        "lon": -121.2908,
+        "lat": 37.9577
+    },
+    "weather": [
+        {
+            "id": 800,
+            "main": "Clear",
+            "description": "clear sky",
+            "icon": "01d"
+        }
+    ],
+    "base": "stations",
+    "main": {
+        "temp": 76.33,
+        "feels_like": 75.6,
+        "temp_min": 72.54,
+        "temp_max": 78.35,
+        "pressure": 1016,
+        "humidity": 41
+    },
+    "visibility": 10000,
+    "wind": {
+        "speed": 11.5,
+        "deg": 290
+    },
+    "clouds": {
+        "all": 0
+    },
+    "dt": 1710890868,
+    "sys": {
+        "type": 1,
+        "id": 5789,
+        "country": "US",
+        "sunrise": 1710857358,
+        "sunset": 1710900970
+    },
+    "timezone": -25200,
+    "id": 5399020,
+    "name": "Stockton",
+    "cod": 200
+}
