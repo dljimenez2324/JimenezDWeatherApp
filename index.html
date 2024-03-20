@@ -34,7 +34,7 @@
 
     <!-- Area for two containers with one showing current date, current temp, and another w/ max min feels like & humidity -->
     <div class="container">
-      <div class="row d-flex">
+      <div class="row">
         <!-- first container -->
         <div class="container col-5 contCommon">
           <div class="row">
@@ -46,7 +46,7 @@
               <h3 id="dateToday">Monday, March 4th</h3>
             </div>
             <div id="favHeart" class="col text-end">
-              <img src="./media/heart.png" class="heartSize">
+              <img id="favHeart" src="./media/heart.png" class="heartSize">
             </div>
           </div>
           <div class="row">
@@ -62,25 +62,26 @@
 
         <!-- second container -->
         <div class="container col-5 contCommon">
-          <div class="row">
+          <div class="row ms-4 mt-5">
             <div class="col itemsNow">
               <h4>Max. Temperature</h4>
-              <h4>75°</h4>
+              <h4 id="tempNowMax">75°</h4>
             </div>
             <div class="col itemsNow">
-              <h4>Max. Temperature</h4>
-              <h4>75°</h4>
+              
+              <h4>Min. Temperature</h4>
+              <h4 id="tempNowMin">75°</h4>
             </div>
           </div>
 
-          <div class="row">
+          <div class="row ms-4 mt-5">
             <div class="col itemsNow">
-              <h4>Max. Temperature</h4>
-              <h4>75°</h4>
+              <h4>Feels Like</h4>
+              <h4 id="feelsLikeNow">75°</h4>
             </div>
             <div class="col itemsNow">
-              <h4>Max. Temperature</h4>
-              <h4>75°</h4>
+              <h4>Humidity</h4>
+              <h4 id="humidityNow">54 %</h4>
             </div>
           </div>
         </div>
@@ -94,5 +95,6 @@
 
     <!-- No Touchy -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src=".//scripts/app.js"></script>
   </body>
 </html>
