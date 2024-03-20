@@ -16,20 +16,25 @@ let humidityNow = document.getElementById("humidityNow");
 // establishing global variables
 let currentWeather = [];
 let defaultCity = "Stockton";
-let chosenCity = "Stockton";
+
 
 // My API Key
 const apiKey = "b5081063510cb1d1936ae3ec13a7744b";
 
 // 
-let currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${chosenCity}&units=imperial&appid=${apiKey}`;
+
 let weatherIconUrl = "https://openweathermap.org/img/wn/";
 let nowIcon = "./media/sun.png";
+let chosenCity = "Stockton";
 
 // Function for getCurrentWeather function for API call
-async function getCurrentWeather(chosenCity){
+async function getCurrentWeather(chosenCityLocal){
+    let currentWeatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${chosenCityLocal}&units=imperial&appid=${apiKey}`;
+
     let apiResponse = await fetch(currentWeatherUrl).then(Response => Response.json());
     console.log(apiResponse);
+
+    chosenCity = chosenCityLocal;
 
     // saving our data to our global array for later use
     currentWeather = apiResponse;
@@ -40,7 +45,7 @@ async function getCurrentWeather(chosenCity){
     weatherWordsNow.innerText = apiResponse.weather[0].description;
 
     // display icon on 1st card
-    let nowIcon = apiResponse.weather[0].icon;
+    nowIcon = apiResponse.weather[0].icon;
     weatherNowIcon.src = weatherIconUrl + nowIcon + "@2x.png";
 }
 
@@ -51,10 +56,11 @@ getCurrentWeather(chosenCity);
 searchBtn.addEventListener("click", function(){
     chosenCity = searchBar.value;
     getCurrentWeather(chosenCity);  // this should get the value of the input and place into the weather function
-
+    cityName.innerText = chosenCity;
     console.log(searchBar.value);
 })
 
 console.log(chosenCity);
 // !!!!!!!!!!!!!!!!!!!!!!!!!!  the above console log will not show mu updated chosenCity to what the searchinput is after clicking the search button
 //  ASK BRYAN !!!!!!!!
+// !!!!! also ask why chosenCity is not  changing to chozenCityLocal vairable within the async function
