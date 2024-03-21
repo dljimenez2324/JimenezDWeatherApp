@@ -15,17 +15,14 @@ let humidityNow = document.getElementById("humidityNow");
 
 // establishing global variables
 let currentWeather = [];
-// let defaultCity = "Stockton";
-
+let chosenCity = "";
 
 // My API Key
 const apiKey = "b5081063510cb1d1936ae3ec13a7744b";
 
-// 
-
+// Weather Icon link
 let weatherIconUrl = "https://openweathermap.org/img/wn/";
 let nowIcon = "./media/sun.png";
-let chosenCity = "";
 
 // Function for getCurrentWeather function for API call
 async function getCurrentWeather(chosenCityLocal){
@@ -52,6 +49,7 @@ async function getCurrentWeather(chosenCityLocal){
     nowIcon = apiResponse.weather[0].icon;
     weatherNowIcon.src = weatherIconUrl + nowIcon + "@2x.png";
 
+
     // display to 2nd card area for max, min, feels, and humidity
     // Change 2nd card's inner texts
     tempNowMax.innerText = Math.round(apiResponse.main.temp_max) + "°";  // approximated by using the temp_max but is not the true max min for the day... requires paid version of api  
@@ -61,24 +59,23 @@ async function getCurrentWeather(chosenCityLocal){
     
 }
 
-//console.log(currentWeather);
 
-// to get the location from our search input lets use the input and button to get the location
+// Function for 5 Day forecast
+
+
+// to get the location from our search input lets use the search input and search button to get the location
 searchBtn.addEventListener("click", function(){
     
-
-    // different way than at bottom of function
+    // get input from searchBar & save to local a variable
     let newCity = searchBar.value.trim(); // trims off the spaces from beginning or end of string to reduce user mistakes
-    if (newCity){  // ensures value exists
-        getCurrentWeather(newCity);
-        
+    
+    // checks for if value exists then runs getCurrentWeather function for the searched city
+    if (newCity){ 
+        getCurrentWeather(newCity);   
     }
-    console.log(currentWeather);
+
     console.log("Search button finished");
 })
 
-
-// console.log(chosenCity);
-// !!!!!!!!!!!!!!!!!!!!!!!!!!  the above console log will not show my updated chosenCity to what the search input (searchBar) is after clicking the search button
-// ASK BRYAN !!!!!!!!
-// !!!!! also ask why chosenCity is not  changing to chosenCityLocal variable within the async function
+// checking to see if apiResponse is saved to currentWeather variable outside of the async function  !!! and its not !!!
+//console.log(currentWeather);
