@@ -15,7 +15,7 @@ let humidityNow = document.getElementById("humidityNow");
 
 // establishing global variables
 let currentWeather = [];
-let defaultCity = "Stockton";
+// let defaultCity = "Stockton";
 
 
 // My API Key
@@ -34,33 +34,64 @@ async function getCurrentWeather(chosenCityLocal){
     let apiResponse = await fetch(currentWeatherUrl).then(Response => Response.json());
     console.log(apiResponse);
 
-    chosenCity = chosenCityLocal;
-
+    
     // saving our data to our global array for later use
     currentWeather = apiResponse;
+    
+    //chosenCity = currentWeather.name;
 
     // display to 1st card current temp
     let roundTemp = Math.round(apiResponse.main.temp);
     tempNow.innerText = roundTemp + "°";
     weatherWordsNow.innerText = apiResponse.weather[0].description;
-
+    cityName.innerText = apiResponse.name;
     // display icon on 1st card
     nowIcon = apiResponse.weather[0].icon;
     weatherNowIcon.src = weatherIconUrl + nowIcon + "@2x.png";
+
+    // Change 2nd card's inner texts
+    //tempNowMax.innerText =  ;   // CANNOT BE COMPLETED WITH THIS THE CURRENT WEATHER DATA  API !!!  
+
+    console.log("get weather finished");
 }
 
+// show data saved to my temp data
+console.log(currentWeather);
+
 // using our get weather Function
-getCurrentWeather(chosenCity);
+//getCurrentWeather(chosenCity);
 
 // to get the location from our search input lets use the input and button to get the location
 searchBtn.addEventListener("click", function(){
-    chosenCity = searchBar.value;
-    getCurrentWeather(chosenCity);  // this should get the value of the input and place into the weather function
-    cityName.innerText = chosenCity;
-    console.log(searchBar.value);
+    
+    // different way than at bottom of function
+    let newCity = searchBar.value.trim(); // trims off the spaces from begeinning or end of string to reduce user mistakes
+    if (newCity){  // ensures value exists
+        getCurrentWeather(newCity);
+        
+    }
+    
+
+    // City name change
+    // chosenCity = currentWeather.name;
+    // cityName.innerText = chosenCity;
+
+    
+    // console.log("search button finished");
+
+    // chosenCity = searchBar.value;
+    // getCurrentWeather(chosenCity);  // this should get the value of the input and place into the weather function
+    // cityName.innerText = chosenCity; // should change html element with id to searchBar input value
+    // //cityName.innerText = currentWeather.name;
+
+    // console.log("Input for city is " + searchBar.value);
+    
+    
+    // alert("button works");  // data for city shows but clears as soon as the alert is dismissed why????
 })
 
+
 console.log(chosenCity);
-// !!!!!!!!!!!!!!!!!!!!!!!!!!  the above console log will not show mu updated chosenCity to what the searchinput is after clicking the search button
+// !!!!!!!!!!!!!!!!!!!!!!!!!!  the above console log will not show my updated chosenCity to what the search input (searchBar) is after clicking the search button
 //  ASK BRYAN !!!!!!!!
-// !!!!! also ask why chosenCity is not  changing to chozenCityLocal vairable within the async function
+// !!!!! also ask why chosenCity is not  changing to chosenCityLocal variable within the async function
