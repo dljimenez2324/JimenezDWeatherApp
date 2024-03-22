@@ -73,3 +73,12 @@ body {
 }
 
 /* Today Weather style 2nd big box */
+
+
+/* 5 day Forecast Styles */
+.forecastStyle {
+    background-color: #B6EDFF;
+    text-align: center;
+    margin: .5rem;
+    /* gap: 5rem; */
+}
