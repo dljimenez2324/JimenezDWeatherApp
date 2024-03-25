@@ -118,10 +118,10 @@ async function getFiveDayForecast(chosenCityLocal){
     // let temporaryUnixTimestamp = apiResponse.list[1].dt - apiResponse.city.timezone;  // this is our unix time accounting for the city's timezone from the api
 
     // THIS IDEA IS SCRAPPED FOR NOW
-    // To add the suffixes to our date days ie(1st, 2nd, 3rd, 4th - 20th 21st etc) we can create an array holding the suffix' we need  THEN concatenate the suffix[j] based upon the dates checked against an object which holds certain dates that require the proper suffix needed
+    // To add the suffixes to our date days ie(1st, 2nd, 3rd, 4th - 20th 21st etc) we can create an array holding the suffix' we need  THEN concatenate the suffix[j] based upon the dates checked against an object which holds certain dates that require the proper suffix needed.  This was created and I couldnt see how i could tie the objects dot notation to match the date().day data as an index or key value pair
 
     // USE THIS IDEA INSTEAD
-    // OR MAYBE we can add the suffix based upon the index is labeled by the formattedDate.day which gives a numerical value from 1 to 31 so then, we build an array with suffix' st, nd, rd, th at the index number just as in the date
+    // MAYBE we can add the suffix based upon the index is labeled by the formattedDate.day which gives a numerical value from 1 to 31 so then, we build an array with suffix' st, nd, rd, th at the index number just as in the date
     const suffix = ["n/a", "st", "nd", "rd", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th", "th", "st"];
 
     // For generalized iteration through the indices of 0 to 5 for current date to 5 days out
@@ -138,6 +138,10 @@ async function getFiveDayForecast(chosenCityLocal){
             case 0:
 
                 dateToday.innerText = formattedDate.month + " " + formattedDate.day + suffix[formattedDate.day];
+
+                // To have the more accurate data for Max and Min for the current day, we will use .list[0] to get the true max and min for the current day.  NOTICE! .list[0] means todays data at time of search NOTE: this is not in the documentation but had to be discovered & tested
+                tempNowMax.innerText = Math.round(apiResponse.list[i].temp.max) + "°";
+                tempNowMin.innerText = Math.round(apiResponse.list[i].temp.min) + "°";
                 break;
             case 1:
                 oneDaysDate.innerText = formattedDate.month + " " + formattedDate.day + suffix[formattedDate.day];
@@ -157,11 +161,6 @@ async function getFiveDayForecast(chosenCityLocal){
         }
 
     };
-
-
-    // To have the more accurate data for Max and Min for the current day, we will use .list[0] to get the true max and min for the current day.  NOTICE! .list[0] means todays data at time of search NOTE: this is not in the documentation but had to be discovered & tested
-    tempNowMax.innerText = Math.round(apiResponse.list[0].temp.max) + "°";
-    tempNowMin.innerText = Math.round(apiResponse.list[0].temp.min) + "°";
 
     console.log("getFiveDayForecast function finished");
 };
@@ -186,7 +185,7 @@ searchBtn.addEventListener("click", function(){
     console.log("Search button finished");
 });
 
-// With the help of Chat GPT I created a date converter from UTC so that I can use "dot notation" to extract the day numerically and the month in it's name form.  I had to be very specific and iterated my method until I could get exactly what I wanted as an output.
+// With the help of Chat GPT I created a date converter from UTC so that I can use "dot notation" to extract the day numerically and the month in its name form.  I had to be very specific and iterated my method until I could get exactly what I wanted as an output.
 // This is a constant object named DateConverter with a method named getFormattedDate which will be used to pass in dt (the unixTimestamp parameter) from our OpenWeatherMap 16 day forecast API.  What it will return is an object with key:value pairs with the useful names year, month, day & etc  so that we can easily call the data we want
 // Please see the example below for how it would be used
 // ALSO understand to make sure we pass in the correct UTC value we need to account for the timezone. 
@@ -237,8 +236,7 @@ const DateConverter = {
 
 
 // CODE AND NOTES FROM OTHERS!!!
-// checking to see if apiResponse is saved to currentWeather variable outside of the async function  !!! and its not !!!
-//console.log(currentWeather);
+
 
 
 // code from Jerie  THIS OS FOR DAYS
