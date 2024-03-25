@@ -226,107 +226,107 @@ const DateConverter = {
     }
 };
 
+// // // // CODE BELOW WAS COMMENTED OUT ALL THE WAY DOWN TO  // // // //  DOWN BELOW!!!!!!
+// // CODE PASTED FROM DYNAMICS FAVE LIST TO HELP FACILITATE FAVES LIST FOR THIS PROJECT
+// //local storage  saves into a local object  local storage likes to use strings not other things.  So local storage will want to save into strings so we will need to turn things from strings to arrays and back again
+// // So we will be using stringify !!!
+// saveBtn.addEventListener("click", function(){
+//     // if we want to prevent saving the same pokemon we would need to check if there is already a pokemon saved with that name but lets not worry about that
 
-// CODE PASTED FROM DYNAMICS FAVE LIST TO HELP FACILITATE FAVES LIST FOR THIS PROJECT
-//local storage  saves into a local object  local storage likes to use strings not other things.  So local storage will want to save into strings so we will need to turn things from strings to arrays and back again
-// So we will be using stringify !!!
-saveBtn.addEventListener("click", function(){
-    // if we want to prevent saving the same pokemon we would need to check if there is already a pokemon saved with that name but lets not worry about that
-
-    // we're going to put our data which are objects into our array pokedata
-    let obj = {
-        "pokeName" : pokeData.name ,
-    }
-    console.log(obj);
-    // favArr is a global variable that gives us more immediate access to the information we want from local storage.  This makes it easier to manipulate what our favorites contains by changing favArr and we can save those changes.
-    // arr.push(data) === take the passed in "data" and adds them to the end of the given array ie arr
-    favArr.push(obj);  // this will get our favArray and push the data from object into our array and this will be added to the end of our array
-    console.log(favArr);
-    // now with our local storage this will add an entry (remember CRUD cycle)
-    // we need to stringify our favArr because our local storage prefers strings, and we can  turn it back into an array later on when we pull the data back out
-    localStorage.setItem("favoritePokemon", JSON.stringify(favArr));  // we are going to get a single item  where we get from the stringify it will turn it into a string and work with the data   FOR US THIS WILL BE OUR FAV CITY
-    console.log(localStorage);
-
-
-    // we will create a fav element on the fly  or injecting a piece of html into our dom
-    let colDiv = document.createElement("div");
-    colDiv.classList = "col";
-    let pTag = document.createElement("p");
-    pTag.innerText = pokeData.name;
-
-    // now lets make the pTag clickable
-    pTag.addEventListener("click", function(){
-        getPokes(pTag.innerText);
-    })
-
-    // Now we will inject to the dom   We will "append" our newly created eleement into our favorites list in the html  remember IN THIS ORDER
-    colDiv.appendChild(pTag);
-    injectHere.appendChild(colDiv);
-});
+//     // we're going to put our data which are objects into our array pokedata
+//     let obj = {
+//         "pokeName" : pokeData.name ,
+//     }
+//     console.log(obj);
+//     // favArr is a global variable that gives us more immediate access to the information we want from local storage.  This makes it easier to manipulate what our favorites contains by changing favArr and we can save those changes.
+//     // arr.push(data) === take the passed in "data" and adds them to the end of the given array ie arr
+//     favArr.push(obj);  // this will get our favArray and push the data from object into our array and this will be added to the end of our array
+//     console.log(favArr);
+//     // now with our local storage this will add an entry (remember CRUD cycle)
+//     // we need to stringify our favArr because our local storage prefers strings, and we can  turn it back into an array later on when we pull the data back out
+//     localStorage.setItem("favoritePokemon", JSON.stringify(favArr));  // we are going to get a single item  where we get from the stringify it will turn it into a string and work with the data   FOR US THIS WILL BE OUR FAV CITY
+//     console.log(localStorage);
 
 
-// ON START        OR           ON LOAD
-// we need to now start with keeping our favorites from our local storage stick around
-// so lets create our ON START which will grab and instance of our favorites list and store it in our array so we can populate the page with our favorite elements
+//     // we will create a fav element on the fly  or injecting a piece of html into our dom
+//     let colDiv = document.createElement("div");
+//     colDiv.classList = "col";
+//     let pTag = document.createElement("p");
+//     pTag.innerText = pokeData.name;
 
-// first we should look to see if we have items in our favs  so we will check our local storage and put it into our favs array if it exists
-// remember we had to stringify the json data into our favArr
-// this below will check to see if local storage has stuff in it
+//     // now lets make the pTag clickable
+//     pTag.addEventListener("click", function(){
+//         getPokes(pTag.innerText);
+//     })
 
-
-let favData = JSON.parse(localStorage.getItem("favoritePokemon")); // parse is going to unstringify what we're giving it but this is not its primary purpose  this will turn our favepokemon and turn it into an array
-console.log(JSON.parse(localStorage.favoritePokemon));
-console.log(favData);  // seems to be the same as above
-
-// if favData means  if theres stuff in it  as opposed to undefined which = false   so in this case if its undefined this makes it false and the if will not run
-// this will populate our favs list but must be  checked first
-if(favData && favData !=null){  
-    // if the data DOES exist and is not empty, then we go inside the if statement, and we have an existing favorites list to work with, we will not make a WORKING COPY of our favorites list to start
-    favArr = favData;
-
-    // now lets go through our array of favorites and make elements for each entry in the same way we do when we save a new favoite!  This way, our existing favorites are ready to be used after we load the page
-    for(let i=0; i < favArr.length; i++){
-        // we are now going to recreate the  fav element on the fly from line 55
-        let colDiv = document.createElement("div");
-        colDiv.classList = "col";
-        let pTag = document.createElement("p");
-        pTag.innerText = favArr[i].pokeName;
-        pTag.addEventListener("click", function(){
-            getPokes(favArr[i].pokeName);
-        })
-        // this below will now glue the pTag inside the colDiv and then the colDiv into the injectHere ID for the element on the html page
-        colDiv.appendChild(pTag);
-        injectHere.appendChild(colDiv);
-    }
-
-}
+//     // Now we will inject to the dom   We will "append" our newly created eleement into our favorites list in the html  remember IN THIS ORDER
+//     colDiv.appendChild(pTag);
+//     injectHere.appendChild(colDiv);
+// });
 
 
-// Delete Button
-// We will be iterating through our favorites array (favArr) and comparing the data of the current page to identify the pokemon we want to remove
-// remember that this  is a button  but i will need to make a delete function
-deleteBtn.addEventListener("click", function(){
-    for(let i = 0; i < favArr.length; i++){
-        // for the current info on our page  check ...
-        if(displayName.innerText === favArr[i].pokeName){
-            // remove 1 element starting at the current index
-            favArr.splice(i, 1);
-            // now lets remove the element from the page by class name at its index   so if we picked the second item  the second column will be erased
-            let colDiv = injectHere.getElementsByClassName("col")[i];
-            injectHere.removeChild(colDiv)
-        }
-    }
-    // now lets remove it from our local storage and remember that .setItem  will UPDATE  (from CRUD cycle of apis) but we also need to stringify it since we dont want it to be a bunch of objects
-    localStorage.setItem("favoritePokemon", JSON.stringify(favArr));
+// // ON START        OR           ON LOAD
+// // we need to now start with keeping our favorites from our local storage stick around
+// // so lets create our ON START which will grab and instance of our favorites list and store it in our array so we can populate the page with our favorite elements
 
-    // lets see this
-    console.log(favArr);
-    console.log(localStorage);
-})
-
-// for me I will need to make sure to make a row then make a city  and then favorite heart
+// // first we should look to see if we have items in our favs  so we will check our local storage and put it into our favs array if it exists
+// // remember we had to stringify the json data into our favArr
+// // this below will check to see if local storage has stuff in it
 
 
+// let favData = JSON.parse(localStorage.getItem("favoritePokemon")); // parse is going to unstringify what we're giving it but this is not its primary purpose  this will turn our favepokemon and turn it into an array
+// console.log(JSON.parse(localStorage.favoritePokemon));
+// console.log(favData);  // seems to be the same as above
+
+// // if favData means  if theres stuff in it  as opposed to undefined which = false   so in this case if its undefined this makes it false and the if will not run
+// // this will populate our favs list but must be  checked first
+// if(favData && favData !=null){  
+//     // if the data DOES exist and is not empty, then we go inside the if statement, and we have an existing favorites list to work with, we will not make a WORKING COPY of our favorites list to start
+//     favArr = favData;
+
+//     // now lets go through our array of favorites and make elements for each entry in the same way we do when we save a new favoite!  This way, our existing favorites are ready to be used after we load the page
+//     for(let i=0; i < favArr.length; i++){
+//         // we are now going to recreate the  fav element on the fly from line 55
+//         let colDiv = document.createElement("div");
+//         colDiv.classList = "col";
+//         let pTag = document.createElement("p");
+//         pTag.innerText = favArr[i].pokeName;
+//         pTag.addEventListener("click", function(){
+//             getPokes(favArr[i].pokeName);
+//         })
+//         // this below will now glue the pTag inside the colDiv and then the colDiv into the injectHere ID for the element on the html page
+//         colDiv.appendChild(pTag);
+//         injectHere.appendChild(colDiv);
+//     }
+
+// }
+
+
+// // Delete Button
+// // We will be iterating through our favorites array (favArr) and comparing the data of the current page to identify the pokemon we want to remove
+// // remember that this  is a button  but i will need to make a delete function
+// deleteBtn.addEventListener("click", function(){
+//     for(let i = 0; i < favArr.length; i++){
+//         // for the current info on our page  check ...
+//         if(displayName.innerText === favArr[i].pokeName){
+//             // remove 1 element starting at the current index
+//             favArr.splice(i, 1);
+//             // now lets remove the element from the page by class name at its index   so if we picked the second item  the second column will be erased
+//             let colDiv = injectHere.getElementsByClassName("col")[i];
+//             injectHere.removeChild(colDiv)
+//         }
+//     }
+//     // now lets remove it from our local storage and remember that .setItem  will UPDATE  (from CRUD cycle of apis) but we also need to stringify it since we dont want it to be a bunch of objects
+//     localStorage.setItem("favoritePokemon", JSON.stringify(favArr));
+
+//     // lets see this
+//     console.log(favArr);
+//     console.log(localStorage);
+// })
+
+// // for me I will need to make sure to make a row then make a city  and then favorite heart
+
+// // // //   CODE COMMENTED OUT ABOVE FOR HELPING PREVENT BREAKING WORKING CODE
 
 
 
