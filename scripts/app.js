@@ -15,20 +15,20 @@ let humidityNow = document.getElementById("humidityNow");
 
 // 5 Day Forecast Area
 let oneDaysDay = document.getElementById("oneDaysDay");
-let twoDaysDay = document.getElementById("oneDaysDay");
-let threeDaysDay = document.getElementById("oneDaysDay");
-let fourDaysDay = document.getElementById("oneDaysDay");
-let fiveDaysDay = document.getElementById("oneDaysDay");
+let twoDaysDay = document.getElementById("twoDaysDay");
+let threeDaysDay = document.getElementById("threeDaysDay");
+let fourDaysDay = document.getElementById("fourDaysDay");
+let fiveDaysDay = document.getElementById("fiveDaysDay");
 let oneDaysDate = document.getElementById("oneDaysDate");
-let twoDaysDate = document.getElementById("oneDaysDate");
-let threeDaysDate = document.getElementById("oneDaysDate");
-let fourDaysDate = document.getElementById("oneDaysDate");
-let fiveDaysDate = document.getElementById("oneDaysDate");
-let oneDayAfterIcon = document.getElementById("oneDayAfterIcon");
-let twoDayAfterIcon = document.getElementById("oneDayAfterIcon");
-let threeDayAfterIcon = document.getElementById("oneDayAfterIcon");
-let fourDayAfterIcon = document.getElementById("oneDayAfterIcon");
-let fiveDayAfterIcon = document.getElementById("oneDayAfterIcon");
+let twoDaysDate = document.getElementById("twoDaysDate");
+let threeDaysDate = document.getElementById("threeDaysDate");
+let fourDaysDate = document.getElementById("fourDaysDate");
+let fiveDaysDate = document.getElementById("fiveDaysDate");
+let oneDaysAfterIcon = document.getElementById("oneDaysAfterIcon");
+let twoDaysAfterIcon = document.getElementById("twoDaysAfterIcon");
+let threeDaysAfterIcon = document.getElementById("threeDaysAfterIcon");
+let fourDaysAfterIcon = document.getElementById("fourDaysAfterIcon");
+let fiveDaysAfterIcon = document.getElementById("fiveDaysAfterIcon");
 let oneDaysForecaTemp = document.getElementById("oneDaysForecaTemp");
 let twoDaysForecaTemp = document.getElementById("twoDaysForecaTemp");
 let threeDaysForecaTemp = document.getElementById("threeDaysForecaTemp");
@@ -105,14 +105,61 @@ async function getFiveDayForecast(chosenCityLocal){
     fiveDaysForecaTemp.innerText = Math.round(apiResponse.list[5].temp.day) + "°"; // shows average temp for 5 day after today
 
     // Icons for each day after today
-    oneDayAfterIcon.src = "https://openweathermap.org/img/wn/" + apiResponse.list[1].weather[0].icon + "@2x.png"; // show the icon for 1 day after today
-    twoDayAfterIcon.src = "https://openweathermap.org/img/wn/" + apiResponse.list[2].weather[0].icon + "@2x.png"; // show the icon for 1 day after today
-    threeDayAfterIcon.src = "https://openweathermap.org/img/wn/" + apiResponse.list[3].weather[0].icon + "@2x.png"; // show the icon for 1 day after today
+    oneDaysAfterIcon.src = "https://openweathermap.org/img/wn/" + apiResponse.list[1].weather[0].icon + "@2x.png"; // show the icon for 1 day after today
+    twoDaysAfterIcon.src = "https://openweathermap.org/img/wn/" + apiResponse.list[2].weather[0].icon + "@2x.png"; // show the icon for 2 day after today
+    threeDaysAfterIcon.src = "https://openweathermap.org/img/wn/" + apiResponse.list[3].weather[0].icon + "@2x.png"; // show the icon for 3 day after today
+    fourDaysAfterIcon.src = "https://openweathermap.org/img/wn/" + apiResponse.list[4].weather[0].icon + "@2x.png"; // show the icon for 4 day after today
+    fiveDaysAfterIcon.src = "https://openweathermap.org/img/wn/" + apiResponse.list[5].weather[0].icon + "@2x.png"; // show the icon for 5 day after today
 
-    let indexOne = 1
-    let testVar = apiResponse.List[indexOne].weather[0].icon;  // code is broken here and cannot display the icon at line 109 to 114
-    console.log(testVar);
-    // To have the more accurate data for Max and Min for the current day, we will use .list[0] to get the true max and min for the current day.
+    
+    // Date for 5 Day forecast showing the Month and day
+    // THIS CODE CAN BE REFACTORED IF TIME PERMITS
+    // For 1 day after today
+    // let temporaryUnixTimestamp = apiResponse.list[1].dt - apiResponse.city.timezone;  // this is our unix time accounting for the city's timezone from the api
+
+    // THIS IDEA IS SCRAPPED FOR NOW
+    // To add the suffixes to our date days ie(1st, 2nd, 3rd, 4th - 20th 21st etc) we can create an array holding the suffix' we need  THEN concatenate the suffix[j] based upon the dates checked against an object which holds certain dates that require the proper suffix needed
+
+    // USE THIS IDEA INSTEAD
+    // OR MAYBE we can add the suffix based upon the index is labeled by the formattedDate.day which gives a numerical value from 1 to 31 so then, we build an array with suffix' st, nd, rd, th at the index number just as in the date
+    const suffix = ["n/a", "st", "nd", "rd", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "th", "st", "nd", "rd", "th", "th", "th", "th", "th", "th", "th", "st"];
+
+    // For generalized iteration through the indices of 0 to 5 for current date to 5 days out
+    for (let i = 0; i <= 5; i++){
+        
+        // this is our unix time accounting for the city's timezone from the api
+        let temporaryUnixTimestamp = apiResponse.list[i].dt - apiResponse.city.timezone;  
+        // this is using out method to get the date formatted as a human-readable date object
+        let formattedDate = DateConverter.getFormattedDate(temporaryUnixTimestamp);
+
+        // this switch will determine which ids will be manipulated based on the iteration index "i" which is used to indicate which day we are asking for api info
+        switch (i) {
+            // case 0 gives us the month and day for today  remember cases 1 through 5 are the forecasted info
+            case 0:
+
+                dateToday.innerText = formattedDate.month + " " + formattedDate.day + suffix[formattedDate.day];
+                break;
+            case 1:
+                oneDaysDate.innerText = formattedDate.month + " " + formattedDate.day + suffix[formattedDate.day];
+                break;
+            case 2:
+                twoDaysDate.innerText = formattedDate.month + " " + formattedDate.day + suffix[formattedDate.day];
+                break;
+            case 3:
+                threeDaysDate.innerText = formattedDate.month + " " + formattedDate.day + suffix[formattedDate.day];
+                break;
+            case 4:
+                fourDaysDate.innerText = formattedDate.month + " " + formattedDate.day + suffix[formattedDate.day];
+                break;
+            case 5:
+                fiveDaysDate.innerText = formattedDate.month + " " + formattedDate.day + suffix[formattedDate.day];
+                break;
+        }
+
+    };
+
+
+    // To have the more accurate data for Max and Min for the current day, we will use .list[0] to get the true max and min for the current day.  NOTICE! .list[0] means todays data at time of search NOTE: this is not in the documentation but had to be discovered & tested
     tempNowMax.innerText = Math.round(apiResponse.list[0].temp.max) + "°";
     tempNowMin.innerText = Math.round(apiResponse.list[0].temp.min) + "°";
 
@@ -139,7 +186,7 @@ searchBtn.addEventListener("click", function(){
     console.log("Search button finished");
 });
 
-// With the help of Chat GPT I created a date converter from UTC so that I can use "dot notation" to extract the day numerically and the month in it's name form
+// With the help of Chat GPT I created a date converter from UTC so that I can use "dot notation" to extract the day numerically and the month in it's name form.  I had to be very specific and iterated my method until I could get exactly what I wanted as an output.
 // This is a constant object named DateConverter with a method named getFormattedDate which will be used to pass in dt (the unixTimestamp parameter) from our OpenWeatherMap 16 day forecast API.  What it will return is an object with key:value pairs with the useful names year, month, day & etc  so that we can easily call the data we want
 // Please see the example below for how it would be used
 // ALSO understand to make sure we pass in the correct UTC value we need to account for the timezone. 
