@@ -4,7 +4,7 @@
 
 /* Global Style */
 body {
-    overflow: hidden; /* Hide horizontal scrollbar */
+    overflow-x: hidden; /* Hide horizontal scrollbar */
     background-image: url("../media/image\ 1.png");
     background-repeat: no-repeat;
     background-size:cover;
@@ -81,4 +81,29 @@ body {
     text-align: center;
     margin: .5rem;
     /* gap: 5rem; */
+}
+
+
+/* Favorites Bar */
+.favsBar {
+    
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    /* color: white !important; */
+}
+
+#favsBarStyle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#favesBarOffCanvasBtn {
+    background-color: white;
+    display: flex;
+    /* justify-content:space-between; */
+}
+
+.offcanvasStyle {
+    background-color: #B6EDFF;
 }

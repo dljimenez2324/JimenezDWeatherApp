@@ -10,7 +10,7 @@
   <body>
     
     <!-- Search Bar Area -->
-    <div class="container mt-4">
+    <div class="container mt-3">
         <div class="row">
             <div class="searchContainerOne">
                 
@@ -45,8 +45,8 @@
             <div class="col-6 text-center">
               <h3 id="dateToday">Monday, March 4th</h3>
             </div>
-            <div id="favHeart" class="col text-end">
-              <img id="favHeart" src="./media/heart.png" class="heartSize">
+            <div class="col text-end">
+              <img id="faveHeart" src="./media/heart.png" class="heartSize">
             </div>
           </div>
           <div class="row">
@@ -62,7 +62,7 @@
 
         <!-- second container -->
         <div class="container col-5 contCommon">
-          <div class="row m-4 g-2">
+          <div class="row m-3 g-2">
             <div class="col itemsNow">
               <h4>Max. Temperature</h4>
               <h4 id="tempNowMax">75°</h4>
@@ -74,7 +74,7 @@
             </div>
           </div>
 
-          <div class="row m-4 g-2">
+          <div class="row m-3 g-2">
             <div class="col itemsNow">
               <h4>Feels Like</h4>
               <h4 id="feelsLikeNow">75°</h4>
@@ -124,6 +124,65 @@
         </div>
       </div>
     </div>
+
+    <!-- Area for Favorites Bar / button -->
+    <!-- <div class="container favsBar">
+      <div class="row">
+        <div class="col">
+          <button id="favesBarOffCanvasBtn" type="button" >
+            <h4>Favorite Places</h4>
+            <img src="./media/image 4.png">
+          </button>
+        </div>
+      </div>
+    </div> -->
+
+    <!-- Area for the offcanvas -->
+    <div id="favsBarStyle" class="container">
+      <div class="row">
+        <div class="col">
+          <button
+            id="favesBarOffCanvasBtn"
+            class="btn favsBar"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasScrolling"
+            aria-controls="offcanvasScrolling"
+          >
+            <h4>Favorite Places</h4>
+            <img src="./media/image 4.png">
+          </button>
+
+          <div
+            class="offcanvas offcanvas-start offcanvasStyle"
+            data-bs-scroll="true"
+            data-bs-backdrop="false"
+            tabindex="-1"
+            id="offcanvasScrolling"
+            aria-labelledby="offcanvasScrollingLabel"
+          >
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasScrollingLabel">
+                YOUR FAVORITE CITIES
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></button>
+            </div>
+            <!-- we are now adding the id to the offcanvas body div -->
+            <div class="offcanvas-body" id="injectHere"> 
+              <p>
+                Favorites will be added here
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
 
     <!-- No Touchy -->

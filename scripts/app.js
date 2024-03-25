@@ -4,7 +4,6 @@ let searchBar = document.getElementById("searchBar");
 let searchBtn = document.getElementById("searchBtn");
 let cityName = document.getElementById("cityName");
 let dateToday = document.getElementById("dateToday");
-let favHeart = document.getElementById("favHeart");
 let tempNow = document.getElementById("tempNow");
 let weatherWordsNow = document.getElementById("weatherWordsNow");
 let weatherNowIcon = document.getElementById("weatherNowIcon");
@@ -35,8 +34,13 @@ let threeDaysForecaTemp = document.getElementById("threeDaysForecaTemp");
 let fourDaysForecaTemp = document.getElementById("fourDaysForecaTemp");
 let fiveDaysForecaTemp = document.getElementById("fiveDaysForecaTemp");
 
+// Favorites elements
+// faveHeart is in the first card next to the date
+let faveHeart = document.getElementById("faveHeart");
+let favesBarOffCanvasBtn = document.getElementById("favesBarOffCanvasBtn");
+
 // establishing global variables
-let currentWeather = [];  //  seldom used
+let currentWeather = [];  //  seldom used but is used for save favorites feature
 let forecastedWeather = [];  // currently, not used
 let chosenCity = "";
 let favArr = [];   // used to hold the values added from out local storage
@@ -112,7 +116,7 @@ async function getFiveDayForecast(chosenCityLocal){
 
     
     // Date for 5 Day forecast showing the Month and day
-    // THIS CODE CAN BE REFACTORED IF TIME PERMITS
+    // THIS CODE WAS REFACTORED AFTER A PATTERN WAS ESTABLISHED THAT COULD BE GENERALIZED
     // For 1 day after today
     // let temporaryUnixTimestamp = apiResponse.list[1].dt - apiResponse.city.timezone;  // this is our unix time accounting for the city's timezone from the api
 
@@ -226,45 +230,46 @@ const DateConverter = {
     }
 };
 
+
+// CODE PASTED FROM DYNAMICS FAVE LIST TO HELP FACILITATE FAVES LIST FOR THIS PROJECT
+//local storage  saves into a local object  local storage likes to use strings not other things.  So local storage will want to save into strings so we will need to turn things from strings to arrays and back again
+// So we will be using stringify !!!
+faveHeart.addEventListener("click", function(){
+        // if we want to prevent saving the same pokemon we would need to check if there is already a pokemon saved with that name but lets not worry about that
+        
+        // we're going to put our data which are objects into our array pokedata
+        let obj = {
+                "cityName" : currentWeather.name ,  //
+            }
+            console.log(obj);
+    //         // favArr is a global variable that gives us more immediate access to the information we want from local storage.  This makes it easier to manipulate what our favorites contains by changing favArr and we can save those changes.
+    //         // arr.push(data) === take the passed in "data" and adds them to the end of the given array ie arr
+    //         favArr.push(obj);  // this will get our favArray and push the data from object into our array and this will be added to the end of our array
+    //         console.log(favArr);
+    //         // now with our local storage this will add an entry (remember CRUD cycle)
+    //         // we need to stringify our favArr because our local storage prefers strings, and we can  turn it back into an array later on when we pull the data back out
+    //         localStorage.setItem("favoritePokemon", JSON.stringify(favArr));  // we are going to get a single item  where we get from the stringify it will turn it into a string and work with the data   FOR US THIS WILL BE OUR FAV CITY
+    //         console.log(localStorage);
+
+            
+    //         // we will create a fav element on the fly  or injecting a piece of html into our dom
+    //         let colDiv = document.createElement("div");
+    //         colDiv.classList = "col";
+    //         let pTag = document.createElement("p");
+    //         pTag.innerText = pokeData.name;
+            
+    //         // now lets make the pTag clickable
+    //         pTag.addEventListener("click", function(){
+    //             getPokes(pTag.innerText);
+    //         })
+
+    // // Now we will inject to the dom   We will "append" our newly created eleement into our favorites list in the html  remember IN THIS ORDER
+    // colDiv.appendChild(pTag);
+    // injectHere.appendChild(colDiv);
+});
+
+
 // // // // CODE BELOW WAS COMMENTED OUT ALL THE WAY DOWN TO  // // // //  DOWN BELOW!!!!!!
-// // CODE PASTED FROM DYNAMICS FAVE LIST TO HELP FACILITATE FAVES LIST FOR THIS PROJECT
-// //local storage  saves into a local object  local storage likes to use strings not other things.  So local storage will want to save into strings so we will need to turn things from strings to arrays and back again
-// // So we will be using stringify !!!
-// saveBtn.addEventListener("click", function(){
-//     // if we want to prevent saving the same pokemon we would need to check if there is already a pokemon saved with that name but lets not worry about that
-
-//     // we're going to put our data which are objects into our array pokedata
-//     let obj = {
-//         "pokeName" : pokeData.name ,
-//     }
-//     console.log(obj);
-//     // favArr is a global variable that gives us more immediate access to the information we want from local storage.  This makes it easier to manipulate what our favorites contains by changing favArr and we can save those changes.
-//     // arr.push(data) === take the passed in "data" and adds them to the end of the given array ie arr
-//     favArr.push(obj);  // this will get our favArray and push the data from object into our array and this will be added to the end of our array
-//     console.log(favArr);
-//     // now with our local storage this will add an entry (remember CRUD cycle)
-//     // we need to stringify our favArr because our local storage prefers strings, and we can  turn it back into an array later on when we pull the data back out
-//     localStorage.setItem("favoritePokemon", JSON.stringify(favArr));  // we are going to get a single item  where we get from the stringify it will turn it into a string and work with the data   FOR US THIS WILL BE OUR FAV CITY
-//     console.log(localStorage);
-
-
-//     // we will create a fav element on the fly  or injecting a piece of html into our dom
-//     let colDiv = document.createElement("div");
-//     colDiv.classList = "col";
-//     let pTag = document.createElement("p");
-//     pTag.innerText = pokeData.name;
-
-//     // now lets make the pTag clickable
-//     pTag.addEventListener("click", function(){
-//         getPokes(pTag.innerText);
-//     })
-
-//     // Now we will inject to the dom   We will "append" our newly created eleement into our favorites list in the html  remember IN THIS ORDER
-//     colDiv.appendChild(pTag);
-//     injectHere.appendChild(colDiv);
-// });
-
-
 // // ON START        OR           ON LOAD
 // // we need to now start with keeping our favorites from our local storage stick around
 // // so lets create our ON START which will grab and instance of our favorites list and store it in our array so we can populate the page with our favorite elements
