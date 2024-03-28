@@ -246,6 +246,7 @@ async function getFiveDayForecast(chosenCityLocal){
 getCurrentWeather(defaultCity);
 getFiveDayForecast(defaultCity);
 
+
 //  NON ASYNC FUNCTIONS LIVING BELOW THIS LINE !!!!!!!!!!!!!!
 
 // Search Function
