@@ -138,9 +138,9 @@ async function getFiveDayForecast(chosenCityLocal){
         let temporaryUnixTimestamp = apiResponse.list[i].dt - apiResponse.city.timezone;
 
         // lets get dates for inputs for adding the day "long form" or in words
-        let today = new Date();
-        let dates = [];
-        let nextDay = new Date(today);
+        let today = new Date();  // date for today
+        let dates = [];          // array to contain dates we will add for future days
+        let nextDay = new Date(today);  // making a next day
         // iterate through each day and calculate the dates and create a date object representing the next day
         nextDay.setDate(today.getDate() + i);
         // add the calculated date to the array dates
