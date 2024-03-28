@@ -45,6 +45,7 @@ let currentWeather = [];  //  seldom used but is used for save favorites feature
 let forecastedWeather = [];  // currently, not used
 let chosenCity = "";
 let favArr = [];   // used to hold the values added from out local storage
+let defaultCity = "Stockton";
 
 // My API Key
 const apiKey = "b5081063510cb1d1936ae3ec13a7744b";
@@ -241,7 +242,8 @@ async function getFiveDayForecast(chosenCityLocal){
     console.log("getFiveDayForecast function finished");
 };
 
-
+//default location is Stockton
+getCurrentWeather("Stockton")
 
 //  NON ASYNC FUNCTIONS LIVING BELOW THIS LINE !!!!!!!!!!!!!!
 
