@@ -243,7 +243,8 @@ async function getFiveDayForecast(chosenCityLocal){
 };
 
 //default location is Stockton
-getCurrentWeather("Stockton")
+getCurrentWeather(defaultCity);
+getFiveDayForecast(defaultCity);
 
 //  NON ASYNC FUNCTIONS LIVING BELOW THIS LINE !!!!!!!!!!!!!!
 
