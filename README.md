@@ -43,5 +43,6 @@ Prototype needs to be reviewed before submission
 Peer Reviewed by Jerie See <br>
 Comments:  <br> <br>
 
+Code is pretty clean. Asked him about the date on the main temperature. it was just a filler and showed me that it changes to what the "today's" date is. David added alot of different extra to make the code look nice and working. comment on each code block makes it easier to understand. For someone like me to peer review his code. It made me learn more of what i know because of all the explanations. As i mentioned to him he's like the chatGpt in human form with his code. 
 
 
