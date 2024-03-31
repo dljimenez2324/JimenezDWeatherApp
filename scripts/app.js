@@ -41,7 +41,7 @@ let faveHeart = document.getElementById("faveHeart");
 let favesBarOffCanvasBtn = document.getElementById("favesBarOffCanvasBtn");
 
 // establishing global variables
-let currentWeather = [];  //  seldom used but is used for save favorites feature
+let currentWeather = [];  //  seldom used but is used for save favorites feature in code down below
 let forecastedWeather = [];  // currently, not used
 let chosenCity = "";
 let favArr = [];   // used to hold the values added from out local storage
